@@ -25,4 +25,15 @@ userBtnElem.className = "";
 // htmlBody.appendChild(mainDiv)
 // htmlBody.appendChild(titleTextElem)
 
+// Function for creating html elements for DOM with JS
+// Create a func with Params passing
+// html element name and name of the id
+// then append element to a parent Param passed in the function
+function createElem(htmlElem, idName, parentElem){
+    const makeElem = document.createElement(htmlElem);
+    madeElem.setAttribute('id', idName);
+    parentElem.appendChild(madeElem);
 
+}
+
+createElem('div', 'anotherDiv', htmlBody);
