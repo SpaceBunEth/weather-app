@@ -69,6 +69,7 @@ function ObjElemCreate(listElem) {
     for (const key in listElem){
         if(listElem.hasOwnProperty(key)) {
             createElem(listElem[key],`${key}`,headerDiv);
+
         }
     }
 }
@@ -78,3 +79,13 @@ ObjElemCreate(listElem)
 // How do we aply class?
 // testing bootstrap
 headerDiv.setAttribute('class', 'container-xxl green')
+const titleText = document.getElementById('titleText');
+titleText.setAttribute('class', 'row justify-content-center align-items-center white')
+titleText.innerHTML = "Weather App"
+
+// func to auto apply bootstrap classes 
+// has 2 Params id name of element and class name for bootstrap code
+function bootstrapClass(id, className) {
+    const titleText = document.getElementById(id);
+    titleText.setAttribute('class', className);
+}
