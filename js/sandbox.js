@@ -76,6 +76,45 @@ function ObjElemCreate(listElem) {
 
 ObjElemCreate(listElem)
 
+// Create a object for Weather API Section
+const htmlWeatherElem = {
+    weatherZip:'div',
+    
+    cityDiv: 'div',
+    cityTitle: 'h3',
+    cityText: 'p',
+
+    tempDiv: 'div',
+    tempTitle: 'h3',
+    tempText1: 'p',
+    tempText2: 'p',
+    tempText3: 'p',
+
+    conDiv: 'div',
+    conTitle: 'h3',
+    conText: 'p',
+
+    otherDiv: 'div',
+    otherTitle: 'h3',
+    otherImg: 'img'
+}
+ObjElemCreate(htmlWeatherElem)
+
+
+// function loops through Obj, Params (html element, id name, parent element (aka where to go)
+// Everytime we loop through our for we want to replace our parent with a element that is a div
+// function ObjElemCreate(htmlWethElm) {
+//     for (const key in htmlWethElm){
+//         if(htmlWethElm.hasOwnProperty(key)) {
+//             createElem(htmlWethElm[key],`${key}`,headerDiv);
+
+//         }
+//     }
+// }
+
+
+
+
 // How do we aply class?
 // testing bootstrap
 headerDiv.setAttribute('class', 'container-xxl green')
@@ -89,3 +128,4 @@ function bootstrapClass(id, className) {
     const titleText = document.getElementById(id);
     titleText.setAttribute('class', className);
 }
+
