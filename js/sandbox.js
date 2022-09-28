@@ -1,5 +1,5 @@
 // sandbox
-console.log('sandbox')
+console.log('sandbox.js')
 // Set const to body and assign id with "bodyid"
 let htmlBody = document.querySelector('body');
 htmlBody.setAttribute('id','bodyid');
