@@ -62,7 +62,10 @@ Using our createElem function passing (element name, id name, parent)
 */
 const listElem = {
     titleText: 'h1',
+    userDiv: 'div',
+    userColForm: 'section',
     userInputForm: 'form',
+    userColbtn: 'section',
     userInputBtn: 'button',
 }
 
@@ -75,7 +78,7 @@ function ObjElemCreate(listElem, parent = headerDiv) {
     }
 }
 
-ObjElemCreate(listElem)
+//ObjElemCreate(listElem)
 
 // Create a object for Weather API Section
 const htmlWeatherElem = {
@@ -105,8 +108,8 @@ const htmlWeatherElem = {
 
 // function loops through Obj, Params (html element, id name, parent element (aka where to go)
 // Everytime we loop through our for we want to replace our parent with a element that is a div
-function ObjElemWeather(htmlWethElm) {
-    let newParent = bodyDiv;
+function ObjElemWeather(htmlWethElm, parent = bodyDiv) {
+    let newParent = parent;
     for (const key in htmlWethElm){
         if(htmlWethElm.hasOwnProperty(key)) {
             if(htmlWethElm[key] == 'div'){
@@ -118,8 +121,8 @@ function ObjElemWeather(htmlWethElm) {
         }
     }
 }
-ObjElemWeather(htmlWeatherElem);
-
+ObjElemWeather(listElem, headerDiv);
+ObjElemWeather(htmlWeatherElem)
 
 
 
@@ -127,8 +130,18 @@ ObjElemWeather(htmlWeatherElem);
 // testing bootstrap
 headerDiv.setAttribute('class', 'container-xxl blue')
 const titleText = document.getElementById('titleText');
+const userDiv = document.getElementById('userDiv');
+const userInputForm = document.getElementById('userInputForm');
+const userInputBtn = document.getElementById('userInputBtn');
+
 titleText.setAttribute('class', 'row justify-content-center align-items-center white')
+userDiv.setAttribute('class', 'row')
+userInputForm.setAttribute('class','')
+userInputBtn.setAttribute('class','btn btn-primary')
+
 titleText.innerHTML = "Weather App"
+
+
 
 // func to auto apply bootstrap classes 
 // has 2 Params id name of element and class name for bootstrap code
