@@ -1,5 +1,5 @@
 // sandbox
-console.log('javascript')
+console.log('Start')
 // Set const to body and assign id with "bodyid"
 let htmlBody = document.querySelector('body');
 htmlBody.setAttribute('id','bodyid');
@@ -42,6 +42,7 @@ function createElem(htmlElem, idName, parentElem){
     const makeElem = document.createElement(htmlElem);
     makeElem.setAttribute('id', idName);
     parentElem.appendChild(makeElem);
+    return parentElem;
 
 }
 
@@ -65,10 +66,10 @@ const listElem = {
     userInputBtn: 'button',
 }
 
-function ObjElemCreate(listElem) {
+function ObjElemCreate(listElem, parent = headerDiv) {
     for (const key in listElem){
         if(listElem.hasOwnProperty(key)) {
-            createElem(listElem[key],`${key}`,headerDiv);
+            createElem(listElem[key],`${key}`,parent);
 
         }
     }
@@ -98,19 +99,27 @@ const htmlWeatherElem = {
     otherTitle: 'h3',
     otherImg: 'img'
 }
-ObjElemCreate(htmlWeatherElem)
+// It WORKS! 
+// ObjElemCreate(htmlWeatherElem)
 
 
 // function loops through Obj, Params (html element, id name, parent element (aka where to go)
 // Everytime we loop through our for we want to replace our parent with a element that is a div
-// function ObjElemCreate(htmlWethElm) {
-//     for (const key in htmlWethElm){
-//         if(htmlWethElm.hasOwnProperty(key)) {
-//             createElem(htmlWethElm[key],`${key}`,headerDiv);
-
-//         }
-//     }
-// }
+function ObjElemWeather(htmlWethElm) {
+    let newParent = bodyDiv;
+    for (const key in htmlWethElm){
+        if(htmlWethElm.hasOwnProperty(key)) {
+            if(htmlWethElm[key] == 'div'){
+                createElem(htmlWethElm[key],`${key}`,newParent);
+                console.log(newParent)
+                newParent = document.getElementById(key)
+            } else {
+                createElem(htmlWethElm[key],`${key}`,newParent);
+            }   
+        }
+    }
+}
+ObjElemWeather(htmlWeatherElem);
 
 
 
