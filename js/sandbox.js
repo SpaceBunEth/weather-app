@@ -68,7 +68,7 @@ const listElem = {
 function ObjElemCreate(listElem) {
     for (const key in listElem){
         if(listElem.hasOwnProperty(key)) {
-            createElem(`${key}`,`${listElem[key]}`,headerDiv);
+            createElem(listElem[key],`${key}`,headerDiv);
         }
     }
 }
@@ -76,3 +76,5 @@ function ObjElemCreate(listElem) {
 ObjElemCreate(listElem)
 
 // How do we aply class?
+// testing bootstrap
+headerDiv.setAttribute('class', 'container-xxl green')
