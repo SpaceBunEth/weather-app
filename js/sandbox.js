@@ -1,5 +1,5 @@
 // sandbox
-console.log('Start')
+console.log('sandbox')
 // Set const to body and assign id with "bodyid"
 let htmlBody = document.querySelector('body');
 htmlBody.setAttribute('id','bodyid');
@@ -111,7 +111,6 @@ function ObjElemWeather(htmlWethElm) {
         if(htmlWethElm.hasOwnProperty(key)) {
             if(htmlWethElm[key] == 'div'){
                 createElem(htmlWethElm[key],`${key}`,newParent);
-                console.log(newParent)
                 newParent = document.getElementById(key)
             } else {
                 createElem(htmlWethElm[key],`${key}`,newParent);
