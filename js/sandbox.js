@@ -125,7 +125,7 @@ ObjElemWeather(htmlWeatherElem);
 
 // How do we aply class?
 // testing bootstrap
-headerDiv.setAttribute('class', 'container-xxl green')
+headerDiv.setAttribute('class', 'container-xxl blue')
 const titleText = document.getElementById('titleText');
 titleText.setAttribute('class', 'row justify-content-center align-items-center white')
 titleText.innerHTML = "Weather App"

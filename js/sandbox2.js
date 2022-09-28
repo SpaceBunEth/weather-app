@@ -14,6 +14,13 @@ async function getWeather() {
     }
   }
 
+
+function tempConvert(K) {
+    const C = K-273.15;
+    const F = ((K-273.15)*1.8)+32;
+    return [K,C,F]
+}
+//tempConvert(Weather.data.main.temp)
 // important information
 // https://api.openweathermap.org/data/2.5/weather?zip={zip code},{country code}&appid={API key}
 //095fe394e44de9a81a6c44190e364b63
