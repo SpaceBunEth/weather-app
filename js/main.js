@@ -2,7 +2,7 @@
 console.log('main.js')
 
 // global card counter
-let cardNum = 0;
+let cardNum = '';
 
 // Set const to body and assign id with "bodyid"
 let htmlBody = document.querySelector('body');
@@ -169,16 +169,7 @@ document.getElementById('cardImg0').setAttribute('src','')
 document.getElementById('cardImg0').setAttribute('alt','...')
 
 
-function ObjElemCreate0(Obj, parent = headerDiv) {
-    for (const key in Obj){
-        //console.log(key)
-        if(Obj.hasOwnProperty(key)) {
-            //console.log(Obj[key][0],key,Obj[key][2],Obj[key][3]);
-            createElem(Obj[key][0],key,Obj[key][2],Obj[key][3]);
-
-        }
-    }
-}
-
 
   // Click Event listener
+
+ // document.getElementById('cardButton').addEventListener('click',)

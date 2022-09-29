@@ -229,5 +229,33 @@ function ObjElemCreate0(Obj, parent = headerDiv) {
   </div> */
 
 
+  // Testing how to create multi cards at a time
+
+// function ObjElemCreate0(Obj, parent = headerDiv) {
+//     for (const key in Obj){
+//         //console.log(key)
+//         let addidName = '';
+//         let parentName = '';
+//         console.log(Obj[key][2])
+//         if (Obj[key][2] == 'bodyDiv'){
+            
+//             addidName = Obj[key][1] + cardNum;
+//             parentName = Obj[key][2];
+//         } else {
+//             addidName = Obj[key][1] + cardNum;
+//             parentName = Obj[key][2] + cardNum;
+//             console.log('New id',addidName)
+//             console.log('New class', parentName)
+//         }
+//         console.log(cardNum)
+//         if(Obj.hasOwnProperty(key)) {
+//             //console.log(Obj[key][0],key,Obj[key][2],Obj[key][3]);
+//             createElem(Obj[key][0],addidName,parentName,Obj[key][3]);
+
+//         }
+//     }
+//     cardNum = cardNum + '0';
+// }
+
+
   // Click Event listener
-  
