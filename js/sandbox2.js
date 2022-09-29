@@ -4,6 +4,7 @@ console.log('sandbox2.js')
 // how do I get that information out and into a object?
 
 let Weather = {}
+
 async function getWeather() {
     try {
       const response = await axios.get('https://api.openweathermap.org/data/2.5/weather?zip=47150,US&appid=095fe394e44de9a81a6c44190e364b63');
