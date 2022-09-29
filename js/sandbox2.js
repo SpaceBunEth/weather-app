@@ -14,7 +14,8 @@ async function getWeather() {
     }
   }
 
-
+// converts kelvin into celcius and farenheit
+// returns kelvin, celcius and farenheit
 function tempConvert(K) {
     const C = K-273.15;
     const F = ((K-273.15)*1.8)+32;
@@ -24,3 +25,10 @@ function tempConvert(K) {
 // important information
 // https://api.openweathermap.org/data/2.5/weather?zip={zip code},{country code}&appid={API key}
 //095fe394e44de9a81a6c44190e364b63
+
+//displaypictures
+
+//zip code form handler
+
+// bootstrap
+

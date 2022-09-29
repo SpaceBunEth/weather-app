@@ -113,8 +113,12 @@ function ObjElemWeather(htmlWethElm, parent = bodyDiv) {
     for (const key in htmlWethElm){
         if(htmlWethElm.hasOwnProperty(key)) {
             if(htmlWethElm[key] == 'div'){
+                
                 createElem(htmlWethElm[key],`${key}`,newParent);
-                newParent = document.getElementById(key)
+                newParent = document.getElementById(key);
+                console.log(newParent.parentElement.nodeName, newParent.parentElement.id)
+
+                //if(newParent.parentElement.nodeName == )
             } else {
                 createElem(htmlWethElm[key],`${key}`,newParent);
             }   

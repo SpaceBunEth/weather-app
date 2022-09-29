@@ -139,7 +139,9 @@ Questions and things I do not understand.
     - helper function checking user input
 - calling api url
 - update function for javascript html elements on DOM
+
 - bootstrap styling 
+
 - Object structure of data
 
 
