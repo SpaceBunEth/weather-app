@@ -1,8 +1,9 @@
+// main.js
+console.log('main.js')
 
-// sandbox
-console.log('sandbox3.js')
 // global card counter
 let cardNum = 0;
+
 // Set const to body and assign id with "bodyid"
 let htmlBody = document.querySelector('body');
 htmlBody.setAttribute('id','bodyid');
@@ -80,28 +81,6 @@ const headerDivContent = {
     cardButton: 'Check Weather',
     cardFooter:  'Last update Zip and time'
 }
-/* 
-<div class="card text-center">
-    <div class="card-header">
-    Current Time
-    </div>
-    <div class="card-body">
-    <h5 class="card-title" >Weather App</h5>
-    <p class="card-text">Enter in your current zip code to get the current weather for that location.</p>
-        <form class="row justify-content-center">
-        <div class="col-6">
-        <input class="form-control form-control-lg" type="number" value="zip code" min="10000" max="99999">
-        </div>
-        <div class="col-6">
-        <button type="submit" class="btn btn-primary btn-lg">Check Weather</button>
-        </div>
-        </form>
-    </div>
-    <div class="card-footer text-muted">
-    Last update Zip and time
-    </div>
-</div> */
-
 
 function ObjElemCreate(Obj, parent = headerDiv) {
     for (const key in Obj){
@@ -201,33 +180,5 @@ function ObjElemCreate0(Obj, parent = headerDiv) {
     }
 }
 
-/* 
-  <div class="container-fluid">
-  <div class="row justify-content-around 1">
-  <div class="card" style="width: 18rem;">
-    <img src="..." class="card-img-top" alt="...">
-    <div class="card-body">
-      <h3 class="card-title">City</h5>
-      <p class="card-text">Descript/Condition</p>
-    </div>
-
-    <ul class="list-group list-group-flush">
-      <h5 class="list-group-item">Tempurature</h3>
-      <li class="list-group-item">Kelvin:</li>
-      <li class="list-group-item">Celcius:</li>
-      <li class="list-group-item">Farenheit:</li>
-    </ul>
-
-    <div class="row card-body">
-      <div class="col-6">
-          <button class="btn btn-danger btn-sm">Delete</button>
-      </div>
-      <div class="col-6">
-          <button class="btn btn-light btn-sm">Refresh</button>
-      </div>
-    </div>
-  </div> */
-
 
   // Click Event listener
-  
