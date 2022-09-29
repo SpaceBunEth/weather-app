@@ -133,6 +133,16 @@ Zip Code/s
 ---
 # SandBox
 
+Questions and things I do not understand.
+
+- html form, javascript DOM
+    - helper function checking user input
+- calling api url
+- update function for javascript html elements on DOM
+
+- bootstrap styling 
+
+- Object structure of data
 
 
 
