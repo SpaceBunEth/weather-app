@@ -50,7 +50,7 @@ function createElem(htmlElem, idName, parentElem, className = null){
 // key: html Element, ID Name, Parent Name, Class Name(Using Bootstrap)
 const headerDivElem = {
     card: ['div','card','headerDiv','card text-center'],
-    cardHeader: ['div','cardHeader','card','card-header'],
+    //cardHeader: ['div','cardHeader','card','card-header'],
     cardBody: ['div','cardBody','card','card-body'],
     cardTitle: ['h3','cardTitle','cardBody','card-title'],
     cardText: ['p','cardText','cardBody','card-text'],
@@ -60,26 +60,26 @@ const headerDivElem = {
     colDiv1: ['div','colDiv1','cardForm','col-6 col-md-3'],
     cardInput: ['input','cardInput','colDiv1','form-control form-control-m'],
     colDiv2: ['div','colDiv2','cardForm','col-6 col-md-3'],
-    cardButton: ['button','cardButton','colDiv2','btn btn-primary btn-m'],
+    cardButton: ['button','cardButton','colDiv2','btn btn-primary'],
 
 
-    cardFooter: ['div','cardFooter','card','card-footer text-muted']
+    //cardFooter: ['div','cardFooter','card','card-footer text-muted']
 
 }
 // headerDivElem string content for DOM
 const headerDivContent = {
     card: '',
-    cardHeader: 'Current Date',
+   // cardHeader: 'Current Date',
     cardBody: '',
     cardTitle: 'Weather App',
-    cardText: 'Enter in your current zip code to get the current weather for that location.',
+    cardText: 'Enter in your zip code to get the current weather for that location.',
     
     cardForm: '',
     colDiv1: '',
     cardInput: '',
     colDiv2: '',
     cardButton: 'Check Weather',
-    cardFooter:  'Last update Zip and time'
+ //   cardFooter:  'Last update Zip and time'
 }
 
 function ObjElemCreate(Obj, parent = headerDiv) {
@@ -105,6 +105,9 @@ function addContent(Obj) {
     }
 }
 addContent(headerDivContent)
+
+//Button in headerDivElem.cardButton needs type Attribute assigned
+document.getElementById('cardButton').setAttribute('type','button')
 
 // Objects and functions for WeatherZips
 // key: html Element, ID Name, Parent Name, Class Name(Using Bootstrap)
@@ -148,9 +151,9 @@ const bodyDivContent = {
 
     cardlu0: '',
     cardh30: 'Temperature',
-    cardli10: 'Kelvin:',
-    cardli20: 'Celcius',
-    cardli30: 'Farenheit',
+    cardli10: 'Kelvin: ',
+    cardli20: 'Celcius: ',
+    cardli30: 'Farenheit: ',
     
 
     cardDivRow0: '',
@@ -165,11 +168,88 @@ addContent(bodyDivContent)
 
 document.getElementById('cardDiv0').setAttribute('style','width: 18rem;')
 
+document.getElementById('cardInput').setAttribute('type','number')
+document.getElementById('cardInput').setAttribute('value','10001')
+document.getElementById('cardInput').setAttribute('min','10001')
+document.getElementById('cardInput').setAttribute('max', '99950')
+
 document.getElementById('cardImg0').setAttribute('src','')
 document.getElementById('cardImg0').setAttribute('alt','...')
 
 
 
   // Click Event listener
+  function BtnHello() {
+    const inputValue = document.getElementById('cardInput').value
+    console.log(document.getElementById('cardInput').value)
 
- // document.getElementById('cardButton').addEventListener('click',)
+    if (inputValue < 10000 || inputValue > 99951 || inputValue == NaN){
+        alert("Not A Zip Code! Please enter a Zip Code");
+    } else {
+        getWeather(inputValue);
+    }
+
+
+  }
+
+ document.getElementById('cardButton').addEventListener('click', BtnHello)
+
+ // async function making an axios call to weather api
+// how do I get that information out and into a object?
+
+let Weather = {}
+
+async function getWeather(zip) {
+    try {
+      const response = await axios.get(`https://api.openweathermap.org/data/2.5/weather?zip=${zip},US&appid=095fe394e44de9a81a6c44190e364b63`);
+      Weather = response;
+      console.log(Weather)
+      addDataDOM(zip)
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  // converts kelvin into celcius and farenheit
+// returns kelvin, celcius and farenheit
+function tempConvert(K) {
+    const C = K-273.15;
+    const F = ((K-273.15)*1.8)+32;
+    return [Math.trunc(K),Math.trunc(C),Math.trunc(F)]
+}
+
+function addDataDOM(zip) {
+    const img = document.getElementById('cardImg0')
+    const icon = Weather.data.weather[0].icon
+    console.log(icon)
+    const title = document.getElementById('cardTitle0')
+    const text = document.getElementById('cardText0')
+    const tempk = document.getElementById('cardli10')
+    const tempc = document.getElementById('cardli20')
+    const tempf = document.getElementById('cardli30')
+    const temps = tempConvert(Weather.data.main.temp)
+    
+
+    title.innerHTML = Weather.data.name;
+    text.innerHTML = Weather.data.weather[0].main + ', ' + Weather.data.weather[0].description;
+    tempk.innerHTML = tempk.innerHTML + "  " + temps[0]
+    tempc.innerHTML = tempc.innerHTML + "  " + temps[1]
+    tempf.innerHTML = tempf.innerHTML + "  " + temps[2]
+
+    img.setAttribute('src',`http://openweathermap.org/img/wn/${icon}@2x.png`);
+    img.setAttribute('alt',Weather.data.weather[0].main)
+
+    const delBtn = document.getElementById('cardBtnDel0');
+    const refBtn = document.getElementById('cardBtnRef0');
+
+// click event listeners Update function and delete function
+
+    //delBtn.addEventListener('click',)
+    //refBtn.addEventListener('click',)
+
+
+
+
+    // Image display
+//`http://openweathermap.org/img/wn/${icon}@2x.png`
+}
