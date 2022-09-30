@@ -4,6 +4,9 @@ console.log('main.js')
 // global card counter
 let cardNum = 0;
 
+//global array, keep track of zip codes
+zipArray = [];
+
 // Set const to body and assign id with "bodyid"
 let htmlBody = document.querySelector('body');
 htmlBody.setAttribute('id','bodyid');
@@ -97,13 +100,10 @@ function cardCreator(Obj, parent = 'cardRowx0') {
     const toStr = cardNum.toString();
     for (const key in Obj){
         if(Obj.hasOwnProperty(key)){
-            console.log(key)
-            console.log('Parent',Obj[key][2])
+
                 if (key == 'cardDivx'){
-                    console.log('Use parent var cardsx0')
                     createElem(Obj[key][0],Obj[key][1]+toStr,parent,Obj[key][3])
                 } else {
-                console.log(Obj[key][0],Obj[key][1]+toStr,Obj[key][2]+toStr,Obj[key][3])
                 createElem(Obj[key][0],Obj[key][1]+toStr,Obj[key][2]+toStr,Obj[key][3])
                 }
         }
@@ -112,10 +112,7 @@ function cardCreator(Obj, parent = 'cardRowx0') {
  // Added content to cardCreator 
  function addContentCard(Obj){
     for (const key in Obj){
-        console.log(key + cardNum)
         const id = document.getElementById(key + cardNum)
-        console.log("ID",id)
-        console.log(Obj[key])
         if(Obj.hasOwnProperty(key) && Obj[key] !== ''){
             
           id.innerHTML = Obj[key]
@@ -198,10 +195,13 @@ const bodyDivContent = {
   // Click Event listener
   function BtnHello() {
     const inputValue = document.getElementById('cardInput').value
-    console.log(document.getElementById('cardInput').value)
+ 
 
     if (inputValue < 10000 || inputValue > 99951 || inputValue == NaN){
         alert("Not A Zip Code! Please enter a Zip Code");
+    } else if(checkZip(inputValue) == true){
+        alert('pick a different zip please')
+        
     } else {
         getWeather(inputValue);
     }
@@ -220,7 +220,7 @@ async function getWeather(zip) {
         const response = await axios.get(`https://api.openweathermap.org/data/2.5/weather?zip=${zip},US&appid=095fe394e44de9a81a6c44190e364b63`);
         Weather = response;
         console.log(Weather)
-
+        zipArray[cardNum] = zip;
         cardCreator(bodyDivElem)
         addContentCard(bodyDivContent)
         addDataDOM(zip)
@@ -229,7 +229,20 @@ async function getWeather(zip) {
 
     } catch (error) {
       console.error(error);
+      alert("Please enter a valid zip code")
     }
+  }
+
+  //HelperFunc CheckZip
+  function checkZip(input) {
+    for (const i in zipArray){
+        console.log('ZipArray', i, zipArray[i])
+        if (zipArray[i] == input){
+            return true;
+        }
+
+    }
+
   }
 
   // converts kelvin into celcius and farenheit
@@ -245,7 +258,6 @@ function addDataDOM(zip) {
     document.getElementById('cardDivx'+toStr).setAttribute('style','width: 18rem;')
     const img = document.getElementById('cardImgx'+toStr)
     const icon = Weather.data.weather[0].icon
-    console.log(icon)
     const title = document.getElementById('cardTitlex'+toStr)
     const text = document.getElementById('cardTextx'+toStr)
     const tempk = document.getElementById('cardli1x'+toStr)
@@ -295,7 +307,7 @@ document.getElementById('cardButton').setAttribute('type','button')
 
 
 document.getElementById('cardInput').setAttribute('type','number')
-document.getElementById('cardInput').setAttribute('value','10001')
+document.getElementById('cardInput').setAttribute('placeholder','10001')
 document.getElementById('cardInput').setAttribute('min','10001')
 document.getElementById('cardInput').setAttribute('max', '99950')
 
