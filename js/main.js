@@ -33,12 +33,10 @@ htmlBody.appendChild(bodyDiv);
 // then append element to a parent Param passed in the function
 function createElem(htmlElem, idName, parentElem, className = null){
     const parent = document.getElementById(parentElem)
-    console.log(htmlElem, idName, parentElem, className)
     const makeElem = document.createElement(htmlElem);
     makeElem.setAttribute('id', idName); 
     if (className !== null)
     makeElem.setAttribute('class', className)
-    console.log(parentElem)
     parent.appendChild(makeElem);
 
     //return parentElem;
@@ -84,6 +82,7 @@ const headerDivContent = {
 
 function ObjElemCreate(Obj, parent = headerDiv) {
     for (const key in Obj){
+
         //console.log(key)
         if(Obj.hasOwnProperty(key)) {
             //console.log(Obj[key][0],key,Obj[key][2],Obj[key][3]);
@@ -94,28 +93,35 @@ function ObjElemCreate(Obj, parent = headerDiv) {
 }
 // Create multiple API Cards on page
 //Param Obj = key: html Element, ID Name, Parent Name, Class Name(Using Bootstrap)
-function cardCreator(Obj, parent = 'cardsx') {
-    console.log('cardNum', cardNum)
+function cardCreator(Obj, parent = 'cardRowx0') {
     const toStr = cardNum.toString();
     for (const key in Obj){
         if(Obj.hasOwnProperty(key)){
-
-                console.log("Important!",Obj[key][0],Obj[key][1]+toStr,Obj[key][2]+toStr,Obj[key][3])
+            console.log(key)
+            console.log('Parent',Obj[key][2])
+                if (key == 'cardDivx'){
+                    console.log('Use parent var cardsx0')
+                    createElem(Obj[key][0],Obj[key][1]+toStr,parent,Obj[key][3])
+                } else {
+                console.log(Obj[key][0],Obj[key][1]+toStr,Obj[key][2]+toStr,Obj[key][3])
                 createElem(Obj[key][0],Obj[key][1]+toStr,Obj[key][2]+toStr,Obj[key][3])
-               
+                }
         }
     }
  } 
  // Added content to cardCreator 
  function addContentCard(Obj){
     for (const key in Obj){
-        const id = document.getElementById(key + cardNum.toString());
+        console.log(key + cardNum)
+        const id = document.getElementById(key + cardNum)
+        console.log("ID",id)
+        console.log(Obj[key])
         if(Obj.hasOwnProperty(key) && Obj[key] !== ''){
-            console.log(Obj[key])
+            
           id.innerHTML = Obj[key]
         }
     }
- }
+}
  // 
 
 
@@ -124,8 +130,6 @@ function addContent(Obj) {
     for (const key in Obj){
         const id = document.getElementById(key)
         if(Obj.hasOwnProperty(key) && Obj[key] !== ''){
-            console.log(Obj[key])
-            
           id.innerHTML = Obj[key]
         }
     }
@@ -139,7 +143,7 @@ function addContent(Obj) {
 const bodyDivElem = {
 
     //cardsx: ['div','cardsx','bodyDiv','container-fluid '],
-    cardRowx: ['div','cardRowx','cardsx','row justify-content-around 1'],
+  //  cardRowx: ['div','cardRowx','cardsx','row justify-content-around 1'],
     cardDivx: ['div','cardDivx','cardRowx','card'],
     cardImgx: ['img','cardImgx','cardDivx','card-img-top'],
 
@@ -148,7 +152,7 @@ const bodyDivElem = {
     cardTextx: ['p','cardTextx','cardBodyx','card-text'],
 
     cardlux: ['lu','cardlux','cardDivx','list-group list-group-flush'],
-    cardh3x: ['h3','cardlh3x','cardlux','list-group-item'],
+    cardh3x: ['h3','cardh3x','cardlux','list-group-item'],
     cardli1x: ['li','cardli1x','cardlux','list-group-item'],
     cardli2x: ['li','cardli2x','cardlux','list-group-item'],
     cardli3x: ['li','cardli3x','cardlux','list-group-item'],
@@ -166,7 +170,7 @@ const bodyDivElem = {
 
 const bodyDivContent = {
    // cardsx: '',
-    cardRowx: '',
+   // cardRowx: '',
     cardDivx: '',
     cardImgx: '',
 
@@ -176,9 +180,9 @@ const bodyDivContent = {
 
     cardlux: '',
     cardh3x: 'Temperature',
-    cardli1x: 'Kelvin: ',
-    cardli2x: 'Celcius: ',
-    cardli3x: 'Farenheit: ',
+    cardli1x: 'Kelvin',
+    cardli2x: 'Celcius',
+    cardli3x: 'Farenheit',
     
 
     cardDivRowx: '',
@@ -216,10 +220,12 @@ async function getWeather(zip) {
         const response = await axios.get(`https://api.openweathermap.org/data/2.5/weather?zip=${zip},US&appid=095fe394e44de9a81a6c44190e364b63`);
         Weather = response;
         console.log(Weather)
+
         cardCreator(bodyDivElem)
-       // addContentCard(bodyDivContent)
+        addContentCard(bodyDivContent)
         addDataDOM(zip)
-        
+        cardNum++;
+        console.log('cardNum', cardNum)
 
     } catch (error) {
       console.error(error);
@@ -278,6 +284,8 @@ ObjElemCreate(headerDivElem)
 addContent(headerDivContent)
 
 createElem('div','cardsx'+cardNum.toString(),'bodyDiv','container-fluid')
+// cardRowx: ['div','cardRowx','cardsx','row justify-content-around 1'],
+createElem('div','cardRowx'+cardNum.toString(),'cardsx0','row justify-content-around 1')
 
 //Button in headerDivElem.cardButton needs type Attribute assigned
 document.getElementById('cardButton').setAttribute('type','button')
