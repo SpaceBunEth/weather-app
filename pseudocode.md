@@ -145,7 +145,35 @@ Questions and things I do not understand.
 - Object structure of data
 
 
+## All SandBox Questions have been answered!
 
+---
+
+### Pseudocode Problem
+We need to create a way for our program to generate a new (set of dom api HTML elements) everytime our user hits the submit button with a valid `Zip-Code`. We have a object with arrays that keep track of our html elements `key name: (element type, id name, parent id, bootstrap class name)`. 
+
+The first key name in our object is `cardsx` it acts as our bootstrap container. when we create more *DOM API Cards* we want to ignore this element and assign all future cards to this parent element. 
+
+As of right now we can not create more cards on the DOM, Our elements parent on top of one another. **WHY?**
+
+Because we have the same id names, if we change our id names for every card then we should be able to successfully add multiple cards to our DOM granted we change the ID names every time a new zip code is submitted.
+
+The naming convention of our ID name is `cardElementx` by using a global var and incrementing it by one every time a new Zip is passed, we can use a helper function to const a new local var to our counters value then stringify it and added it to the end of our Object Key: IDs before we Param it into the *createElementFunc*
+
+```
+Button click event
+   RUN HelperFunction
+        IF zip code = valid
+            CountCards + 1
+            Run CreateElementsFunc
+
+CreateElementsFunc
+    Const CountCardstring = CountCards to string
+    Loop thro Obj Keys
+        Create element with id = Obj[key][IDName] + CountCardstring
+
+```
+---
 
 
 

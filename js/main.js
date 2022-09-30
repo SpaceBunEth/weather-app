@@ -92,6 +92,25 @@ function ObjElemCreate(Obj, parent = headerDiv) {
         }
     }
 }
+// Create multiple API Cards on page
+//Param Obj = key: html Element, ID Name, Parent Name, Class Name(Using Bootstrap)
+function cardCreator(Obj, parent = 'cardsx') {
+    cardNum = 0
+    console.log('cardNum', cardNum)
+    const toStr = cardNum.toString();
+    for (const key in Obj){
+        if(Obj.hasOwnProperty(key)){
+            if (cardNum == 0){
+                createElem('div','cardsx','bodyDiv','container-fluid ')
+                cardNum++;
+            }else{
+                console.log("Important!",Obj[key][0],Obj[key][1]+toStr,Obj[key][2]+toStr,Obj[key][3])
+                createElem(Obj[key][0],Obj[key][1]+toStr,Obj[key][2]+toStr,Obj[key][3])
+               
+            }
+        }
+    }   
+}
 
 
 function addContent(Obj) {
@@ -112,7 +131,7 @@ function addContent(Obj) {
 // key: html Element, ID Name, Parent Name, Class Name(Using Bootstrap)
 const bodyDivElem = {
 
-    cardsx: ['div','cardsx','bodyDiv','container-fluid '],
+    //cardsx: ['div','cardsx','bodyDiv','container-fluid '],
     cardRowx: ['div','cardRowx','cardsx','row justify-content-around 1'],
     cardDivx: ['div','cardDivx','cardRowx','card'],
     cardImgx: ['img','cardImgx','cardDivx','card-img-top'],
@@ -167,8 +186,6 @@ const bodyDivContent = {
 
   // Click Event listener
   function BtnHello() {
-    cardNum++;
-    console.log(cardNum)
     const inputValue = document.getElementById('cardInput').value
     console.log(document.getElementById('cardInput').value)
 
@@ -192,10 +209,10 @@ async function getWeather(zip) {
         const response = await axios.get(`https://api.openweathermap.org/data/2.5/weather?zip=${zip},US&appid=095fe394e44de9a81a6c44190e364b63`);
         Weather = response;
         console.log(Weather)
-        ObjElemCreate(bodyDivElem)
-        addContent(bodyDivContent)
+        cardCreator(bodyDivElem)
+       // addContent(bodyDivContent)
         addDataDOM(zip)
-        document.getElementById('cardDivx').setAttribute('style','width: 18rem;')
+        
 
     } catch (error) {
       console.error(error);
@@ -211,14 +228,16 @@ function tempConvert(K) {
 }
 
 function addDataDOM(zip) {
-    const img = document.getElementById('cardImgx')
+    const toStr = cardNum.toString()
+    document.getElementById('cardDivx'+toStr).setAttribute('style','width: 18rem;')
+    const img = document.getElementById('cardImgx'+toStr)
     const icon = Weather.data.weather[0].icon
     console.log(icon)
-    const title = document.getElementById('cardTitlex')
-    const text = document.getElementById('cardTextx')
-    const tempk = document.getElementById('cardli1x')
-    const tempc = document.getElementById('cardli2x')
-    const tempf = document.getElementById('cardli3x')
+    const title = document.getElementById('cardTitlex'+toStr)
+    const text = document.getElementById('cardTextx'+toStr)
+    const tempk = document.getElementById('cardli1x'+toStr)
+    const tempc = document.getElementById('cardli2x'+toStr)
+    const tempf = document.getElementById('cardli3x'+toStr)
     const temps = tempConvert(Weather.data.main.temp)
     
 
@@ -231,8 +250,8 @@ function addDataDOM(zip) {
     img.setAttribute('src',`http://openweathermap.org/img/wn/${icon}@2x.png`);
     img.setAttribute('alt',Weather.data.weather[0].main)
 
-    const delBtn = document.getElementById('cardBtnDelx');
-    const refBtn = document.getElementById('cardBtnRefx');
+    const delBtn = document.getElementById('cardBtnDelx'+toStr);
+    const refBtn = document.getElementById('cardBtnRefx'+toStr);
 
 // click event listeners Update function and delete function
 
