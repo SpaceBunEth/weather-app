@@ -277,8 +277,7 @@ function addDataDOM(zip) {
 
     const delBtn = document.getElementById('cardBtnDelx'+toStr);
     const refBtn = document.getElementById('cardBtnRefx'+toStr);
-    console.log(delBtn)
-    delRefBtn(delBtn,refBtn)
+    delRefBtn(delBtn,refBtn,zip,toStr)
 
 
 
@@ -290,16 +289,17 @@ function addDataDOM(zip) {
 
     //delBtn.addEventListener('click',)
     //refBtn.addEventListener('click',)
-function delRefBtn(del,ref){
+function delRefBtn(del,ref,zip,toStr){
     del.addEventListener('click',delCard)
-    ref.addEventListener('click',refCard)
+    ref.addEventListener('click',function(){ refCard(zip, toStr); })
 }
 function delCard() {
     console.log('del')
-    
+
 }
-function refCard() {
+function refCard(zip, toStr) {
     console.log('ref')
+    console.log('card ID',zip ,'#',toStr)
 }
 
 
