@@ -95,22 +95,29 @@ function ObjElemCreate(Obj, parent = headerDiv) {
 // Create multiple API Cards on page
 //Param Obj = key: html Element, ID Name, Parent Name, Class Name(Using Bootstrap)
 function cardCreator(Obj, parent = 'cardsx') {
-    cardNum = 0
     console.log('cardNum', cardNum)
     const toStr = cardNum.toString();
     for (const key in Obj){
         if(Obj.hasOwnProperty(key)){
-            if (cardNum == 0){
-                createElem('div','cardsx','bodyDiv','container-fluid ')
-                cardNum++;
-            }else{
+
                 console.log("Important!",Obj[key][0],Obj[key][1]+toStr,Obj[key][2]+toStr,Obj[key][3])
                 createElem(Obj[key][0],Obj[key][1]+toStr,Obj[key][2]+toStr,Obj[key][3])
                
-            }
         }
-    }   
-}
+    }
+ } 
+ // Added content to cardCreator 
+ function addContentCard(Obj){
+    for (const key in Obj){
+        const id = document.getElementById(key + cardNum.toString());
+        if(Obj.hasOwnProperty(key) && Obj[key] !== ''){
+            console.log(Obj[key])
+          id.innerHTML = Obj[key]
+        }
+    }
+ }
+ // 
+
 
 
 function addContent(Obj) {
@@ -158,7 +165,7 @@ const bodyDivElem = {
 // bodyDivElem Object string Content for DOM
 
 const bodyDivContent = {
-    cardsx: '',
+   // cardsx: '',
     cardRowx: '',
     cardDivx: '',
     cardImgx: '',
@@ -210,7 +217,7 @@ async function getWeather(zip) {
         Weather = response;
         console.log(Weather)
         cardCreator(bodyDivElem)
-       // addContent(bodyDivContent)
+       // addContentCard(bodyDivContent)
         addDataDOM(zip)
         
 
@@ -269,6 +276,9 @@ function addDataDOM(zip) {
 //INIT()
 ObjElemCreate(headerDivElem)
 addContent(headerDivContent)
+
+createElem('div','cardsx'+cardNum.toString(),'bodyDiv','container-fluid')
+
 //Button in headerDivElem.cardButton needs type Attribute assigned
 document.getElementById('cardButton').setAttribute('type','button')
 
