@@ -277,18 +277,32 @@ function addDataDOM(zip) {
 
     const delBtn = document.getElementById('cardBtnDelx'+toStr);
     const refBtn = document.getElementById('cardBtnRefx'+toStr);
-
-// click event listeners Update function and delete function
-
-    //delBtn.addEventListener('click',)
-    //refBtn.addEventListener('click',)
-
+    console.log(delBtn)
+    delRefBtn(delBtn,refBtn)
 
 
 
     // Image display
 //`http://openweathermap.org/img/wn/${icon}@2x.png`
 }
+
+// click event listeners Update function and delete function
+
+    //delBtn.addEventListener('click',)
+    //refBtn.addEventListener('click',)
+function delRefBtn(del,ref){
+    del.addEventListener('click',delCard)
+    ref.addEventListener('click',refCard)
+}
+function delCard() {
+    console.log('del')
+    
+}
+function refCard() {
+    console.log('ref')
+}
+
+
 
 
 //INIT()
